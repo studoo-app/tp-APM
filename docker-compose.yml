@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+  ##########################
+  # CONTENEURS APPLICATIFS #
+  ##########################
+
+
+  ##########################
+  # CONTENEURS SERVICES    #
+  ##########################
+
+  #Base de données Mysql
+  # si vous souhaitez utilisé l'image: mysql:5.7, decommenté la ligne platform
+  db:
+    container_name: ${CONTAINER_PREFIX}-db
+    image: mariadb:10.5.8 # mysql:5.7
+    # platform: linux/amd64
+    restart: always
+    volumes:
+      - ./data/db-data:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      - dev
+  #PHP My Admin
+  phpmyadmin:
+    container_name: ${CONTAINER_PREFIX}-pma
+    image: phpmyadmin:latest
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+    networks:
+      - dev
+
+  mailer:
+    container_name: ${CONTAINER_PREFIX}-mailer
+    image: schickling/mailcatcher
+    ports: [ "1025", "1080" ]
+#Network
+networks:
+  dev:
+#Volumes
+volumes:
+  db-data:
