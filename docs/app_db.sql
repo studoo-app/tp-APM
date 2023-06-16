@@ -32,7 +32,6 @@ USE `app_db`;
 DROP TABLE IF EXISTS `promesse_don`;
 CREATE TABLE `promesse_don` (
                                     `id` int(11) NOT NULL,
-                                    `campaign_id` int(11) NOT NULL,
                                     `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
                                     `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
                                     `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -49,8 +48,7 @@ CREATE TABLE `promesse_don` (
 -- Index pour la table `donation_promise`
 --
 ALTER TABLE `promesse_don`
-    ADD PRIMARY KEY (`id`),
-    ADD KEY `IDX_B1A0DF20F639F774` (`campaign_id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -59,19 +57,10 @@ ALTER TABLE `promesse_don`
 --
 -- AUTO_INCREMENT pour la table `donation_promise`
 --
-ALTER TABLE `donation_promise`
+ALTER TABLE `promesse_don`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- Contraintes pour les tables déchargées
---
 
---
--- Contraintes pour la table `donation_promise`
---
-ALTER TABLE `donation_promise`
-    ADD CONSTRAINT `FK_B1A0DF20F639F774` FOREIGN KEY (`campaign_id`) REFERENCES `campaign` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
