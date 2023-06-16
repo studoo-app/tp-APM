@@ -17,7 +17,7 @@ services:
     # platform: linux/amd64
     restart: always
     ports:
-      - "3306:3006"
+      - "3306:3306"
     volumes:
       - ./data/db-data:/var/lib/mysql
     environment:
