@@ -16,6 +16,8 @@ services:
     image: mariadb:10.5.8 # mysql:5.7
     # platform: linux/amd64
     restart: always
+    ports:
+      - "3306:3006"
     volumes:
       - ./data/db-data:/var/lib/mysql
     environment:
