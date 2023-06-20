@@ -53,5 +53,4 @@ class AjouterPromesseDonController implements ControllerInterface
         return isset($data['email']) && isset($data['firstname']) && isset($data['lastname']) && isset($data['amount']);
     }
 
-
 }

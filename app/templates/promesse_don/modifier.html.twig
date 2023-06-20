@@ -1,9 +1,19 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Modifier le don N° {{ promesseDon.id }}{% endblock %}
 
 {% block content %}
-    <h1>Default HomePage</h1>
-
+    <div class="hstack gap-2 d-flex justify-content-between mt-3">
+        <a class="btn btn-danger btn-sm" href="/dons/{{ promesseDon.id }}">Retour</a>
+    </div>
+    <hr/>
+    <h1>Nouvelle promesse de don</h1>
+    <hr/>
+    {% if errors.message is defined  %}
+        <div class="alert alert-danger">
+            {{ errors.message }}
+        </div>
+    {% endif %}
+    {% include 'promesse_don/_form.html.twig' with { path:"/dons/#{promesseDon.id}/modifier" } %}
 {% endblock %}
 

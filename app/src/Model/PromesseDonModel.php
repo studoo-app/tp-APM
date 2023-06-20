@@ -53,6 +53,35 @@ class PromesseDonModel
         $requete->execute($promesseDon->toArray());
     }
 
+    public function update(PromesseDon $promesseDon): void
+    {
+        $requete = $this->bdd
+            ->prepare('UPDATE `promesse_don` SET `email`=:email,`firstname`= :firstname,`lastname`= :lastname, `amount`= :amount  WHERE `promesse_don`.`id` = :id;');
+        $requete->execute([
+            'id'=>$promesseDon->getId(),
+            'email'=>$promesseDon->getEmail(),
+            'firstname'=>$promesseDon->getFirstname(),
+            'lastname'=>$promesseDon->getLastname(),
+            'amount'=>$promesseDon->getAmount(),
+        ]);
+    }
+
+    public function markAsHonored(PromesseDon $promesseDon): void
+    {
+        $requete = $this->bdd
+            ->prepare('UPDATE `promesse_don` SET `honored_at`= :honoredAt  WHERE `promesse_don`.`id` = :id;');
+        $requete->execute([
+            "id"=>$promesseDon->getId(),
+            "honoredAt"=>$promesseDon->getHonoredAt()->format('Y-m-d H:i:s')
+        ]);
+    }
+
+    public function delete(int $id): void
+    {
+        $requete = $this->bdd
+            ->prepare('DELETE FROM promesse_don WHERE `promesse_don`.`id` = :id ');
+        $requete->execute(['id'=>$id]);
+    }
 
     private function buildPromesse(array $data): PromesseDon
     {
