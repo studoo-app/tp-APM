@@ -56,4 +56,14 @@ class Request
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getHttpMethod(): string
+    {
+        return $this->httpMethod;
+    }
+
+
+
 }
