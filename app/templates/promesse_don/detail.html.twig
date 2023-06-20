@@ -3,7 +3,28 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <h1>Default HomePage</h1>
 
+    <div class="hstack gap-2 d-flex justify-content-between mt-3">
+        <a class="btn btn-danger btn-sm" href="/dons">Retour</a>
+        <div>
+            <a class="btn btn-primary btn-sm" href="/dons/{{ promesseDon.id }}/modifier">Modifier</a>
+            <a class="btn btn-danger btn-sm" href="/dons/{{ promesseDon.id }}/supprimer">Supprimer</a>
+        </div>
+    </div>
+    <hr/>
+    <h1>Detail promesse de don N° {{ promesseDon.id }}</h1>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-3">Date de création</dt>
+        <dd class="col-sm-9">{{ promesseDon.createdAt | date('d/m/Y') }}</dd>
+        <dt class="col-sm-3">Nom Complet</dt>
+        <dd class="col-sm-9">{{ promesseDon.firstname }} {{ promesseDon.lastname }}</dd>
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">{{ promesseDon.email }}</dd>
+        <dt class="col-sm-3">Montant</dt>
+        <dd class="col-sm-9">{{ promesseDon.amount }} €</dd>
+        <dt class="col-sm-3">Don sécurisé</dt>
+        <dd class="col-sm-9">{{ promesseDon.honoredAt ? 'OUI' : 'NON' }}</dd>
+    </dl>
 {% endblock %}
 
