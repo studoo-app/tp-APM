@@ -4,6 +4,18 @@ services:
   # CONTENEURS APPLICATIFS #
   ##########################
 
+  #app
+  app:
+    container_name: ${CONTAINER_PREFIX}-app
+    build: ./docker/php
+    ports:
+      - "7000:80"
+    volumes:
+      - ./docker/php/vhosts:/etc/apache2/sites-enabled
+      - ./app:/var/www
+    restart: always
+    networks:
+      - dev
 
   ##########################
   # CONTENEURS SERVICES    #
@@ -16,8 +28,6 @@ services:
     image: mariadb:10.5.8 # mysql:5.7
     # platform: linux/amd64
     restart: always
-    ports:
-      - "3306:3306"
     volumes:
       - ./data/db-data:/var/lib/mysql
     environment:
