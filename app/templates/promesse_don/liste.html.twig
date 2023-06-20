@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des promesses de dons{% endblock %}
+
+{% block content %}
+    <h1>Liste des promesses de dons</h1>
+
+    <table class="table">
+        <thead>
+        <tr class="text-center">
+            <th scope="col">#</th>
+            <th scope="col">Date création</th>
+            <th scope="col">Email</th>
+            <th scope="col">Nom complet</th>
+            <th scope="col">Montant</th>
+            <th scope="col">Sécurisé</th>
+            <th/>
+        </tr>
+        </thead>
+        <tbody>
+        {% for promesseDon in promesse_dons %}
+            <tr class="text-center">
+                <td>{{ promesseDon.id }}</td>
+                <td>{{ promesseDon.createdAt | date('d/m/Y') }}</td>
+                <td>{{ promesseDon.email }}</td>
+                <td>{{ promesseDon.firstname }} {{ promesseDon.lastname }}</td>
+                <td>{{ promesseDon.amount }} €</td>
+                <td>{{ promesseDon.honoredAt ? 'OUI' : 'NON' }}</td>
+                <td >
+                    <a class="btn btn-primary" href="/dons/{{ promesseDon.id }}">Voir</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
