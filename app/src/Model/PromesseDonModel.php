@@ -46,6 +46,13 @@ class PromesseDonModel
         return  $promesse;
     }
 
+    public function create(PromesseDon $promesseDon): void
+    {
+        $requete = $this->bdd
+            ->prepare('INSERT INTO `promesse_don` (`id`, `email`, `firstname`, `lastname`, `amount`, `created_at`, `honored_at`) VALUES (NULL, :email, :firstname, :lastname, :amount, :createdAt, NULL);');
+        $requete->execute($promesseDon->toArray());
+    }
+
 
     private function buildPromesse(array $data): PromesseDon
     {

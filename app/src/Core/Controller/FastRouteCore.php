@@ -22,7 +22,6 @@ class FastRouteCore
         $request = new Request($uri, $httpMethod);
 
         $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
-
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
                 // ... 404 Not Found

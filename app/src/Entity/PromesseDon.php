@@ -4,12 +4,12 @@ namespace Apps\Entity;
 
 class PromesseDon
 {
-    private int $id;
+    private ?int $id;
 
-    private string $email;
-    private string $firstname;
-    private string $lastname;
-    private int $amount;
+    private ?string $email;
+    private ?string $firstname;
+    private ?string $lastname;
+    private ?int $amount;
     private \DateTime $createdAt;
     private ?\DateTime $honoredAt;
 
@@ -19,81 +19,81 @@ class PromesseDon
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
     /**
-     * @param string $email
+     * @param string|null $email
      */
-    public function setEmail(string $email): void
+    public function setEmail(?string $email): void
     {
         $this->email = $email;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFirstname(): string
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
     /**
-     * @param string $firstname
+     * @param string|null $firstname
      */
-    public function setFirstname(string $firstname): void
+    public function setFirstname(?string $firstname): void
     {
         $this->firstname = $firstname;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLastname(): string
+    public function getLastname(): ?string
     {
         return $this->lastname;
     }
 
     /**
-     * @param string $lastname
+     * @param string|null $lastname
      */
-    public function setLastname(string $lastname): void
+    public function setLastname(?string $lastname): void
     {
         $this->lastname = $lastname;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getAmount(): int
+    public function getAmount(): ?int
     {
         return $this->amount;
     }
 
     /**
-     * @param int $amount
+     * @param int|null $amount
      */
-    public function setAmount(int $amount): void
+    public function setAmount(?int $amount): void
     {
         $this->amount = $amount;
     }
@@ -130,8 +130,11 @@ class PromesseDon
         $this->honoredAt = $honoredAt;
     }
 
-
-
-
+    public function toArray(): array
+    {
+        $array = get_object_vars($this);
+        $array["createdAt"] = $array["createdAt"]->format('Y-m-d H:i:s');
+        return $array;
+    }
 
 }
