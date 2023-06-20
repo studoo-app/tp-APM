@@ -4,6 +4,33 @@
 
 {% block content %}
     <h1>Default HomePage</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total collecté</h5>
+                    <p class="card-text">{{ stats.promis }} €</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total sécurisé</h5>
+                    <p class="card-text">{{ stats.securise }} €</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total en attente</h5>
+                    <p class="card-text">{{ stats.enAttente }} €</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 {% endblock %}
 

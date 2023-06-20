@@ -83,6 +83,34 @@ class PromesseDonModel
         $requete->execute(['id'=>$id]);
     }
 
+    public function getTotalAmount(){
+        $requete = $this->bdd
+            ->prepare('SELECT SUM(amount) FROM `promesse_don`');
+        $requete->execute();
+
+        return $requete->fetch()[0];
+    }
+
+    public function getSecuredAmount(){
+        $requete = $this->bdd
+            ->prepare('SELECT SUM(amount) FROM `promesse_don` WHERE `honored_at` IS NOT NULL ');
+        $requete->execute();
+
+        return $requete->fetch()[0];
+    }
+
+    public function getPendingAmount(){
+        $requete = $this->bdd
+            ->prepare('SELECT SUM(amount) FROM `promesse_don` WHERE `honored_at` IS NULL ');
+        $requete->execute();
+
+        return $requete->fetch()[0];
+    }
+
+
+
+
+
     private function buildPromesse(array $data): PromesseDon
     {
         $promesse = new PromesseDon();
