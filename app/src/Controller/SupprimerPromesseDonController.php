@@ -3,8 +3,10 @@
 namespace Apps\Controller;
 
 use Apps\Core\Controller\Request;
+use Apps\Core\DebugHandler;
 use Apps\Core\View\TwigCore;
 use Apps\Core\Controller\ControllerInterface;
+use Apps\Model\PromesseDonModel;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -18,10 +20,11 @@ class SupprimerPromesseDonController implements ControllerInterface
      */
     public function execute(Request $request)
     {
-        $twig = TwigCore::getEnvironment();
+        $dataModel = new PromesseDonModel();
+        $dumper = new DebugHandler();
 
-        return $twig->render('home/home.html.twig', [
-            'visu' => false
-        ]);
+        $dataModel->delete($request->get('id'));
+
+        header('location: /dons');
     }
 }

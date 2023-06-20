@@ -23,7 +23,7 @@ class DetailPromesseDonController implements ControllerInterface
         $dataModel = new PromesseDonModel();
 
         return $twig->render('promesse_don/detail.html.twig', [
-            'promesseDon' => $dataModel->get($request->getVars()['id'])
+            'promesseDon' => $dataModel->get($request->get('id'))
         ]);
     }
 }
